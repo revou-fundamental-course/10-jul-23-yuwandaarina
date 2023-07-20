@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BMI Calculator</title>
+</head>
+<style>
+   body {
+    font-family: Arial, sans-serif;
+  }
+  .container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+  }
+  h1 {
+    text-align: center;
+    background-color: pink;
+  }
+  .sub-title {
+      text-align: left;
+  }
+  label {
+    display: block;
+    margin-bottom: 10px;
+    background-color: blanchedalmond;
+  }
+  input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+  button {
+    display: block;
+    width: 50%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  #result {
+    margin-top: 20px;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+  } 
+</style>
+<body>
+  <div class="container">
+    <h1>BMI Calculator</h1>
+    <p class="sub-title">Berat badan ideal adalah impian semua orang. Tidak hanya memiliki bentuk tubuh yang menunjang penampilan, 
+        berat badan ideal juga menandakan kondisi tubuh yang sehat. Bagaimana denganmu? Yuk, hitung sekarang di Kalkulator BMI </p>
+    <label for="gender">Gender:</label>
+    <input type="radio" id="gender" step="0.1" value="male">Male
+    <input  type="radio" id="gender" step="0.1" value="female">Female
+    <label for="age">Age:</label>
+    <input type="number" id="age" step="0.1">
+    <label for="weight">Weight (kg):</label>
+    <input type="number" id="weight" step="0.1">
+    <label for="height">Height (cm):</label>
+    <input type="number" id="height" step="0.01">
+    <button onclick="calculateBMI()">Calculate BMI</button>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function calculateBMI() {
+      var weight = document.getElementById('weight').value;
+      var height = document.getElementById('height').value;
+
+      var bmi = weight / (height * height);
+      var category = interpretBMI(bmi);
+
+      var resultElement = document.getElementById('result');
+      resultElement.innerHTML = "Your BMI is: " + bmi.toFixed(2) + "<br>Your category is: " + category;
+    }
+
+    function interpretBMI(bmi) {
+      if (bmi < 18.5) {
+        return "Underweight";
+      } else if (bmi < 25) {
+        return "Normal weight";
+      } else if (bmi < 30) {
+        return "Overweight";
+      } else {
+        return "Obese";
+      }
+    }
+  </script>
+</body>
+</html>
